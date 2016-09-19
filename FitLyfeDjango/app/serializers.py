@@ -11,19 +11,19 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
   class Meta:
     model = User
-    fields = ('id', 'url', 'username', 'first_name', 'last_name', 'bio', 'city', 'date_joined', 'groups', 'lifts_created', 'workouts_completed')
+    fields = ('id', 'url', 'username', 'first_name', 'last_name', 'bio', 'city', 'date_joined', 'user_type', 'lifts_created', 'workouts_completed')
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
-
-    class Meta:
-        model = Group
-        fields = ('id', 'url', 'name', 'permissions')
-
-class PermissionSerializer(serializers.HyperlinkedModelSerializer):
-
-    class Meta:
-        model = Permission
-        fields = ('id', 'url', 'name', 'content_type', 'codename')
+# class GroupSerializer(serializers.HyperlinkedModelSerializer):
+#
+#     class Meta:
+#         model = Group
+#         fields = ('id', 'url', 'name', 'permissions')
+#
+# class PermissionSerializer(serializers.HyperlinkedModelSerializer):
+#
+#     class Meta:
+#         model = Permission
+#         fields = ('id', 'url', 'name', 'content_type', 'codename')
 
 class ExerciseTypeSerializer(serializers.HyperlinkedModelSerializer):
 

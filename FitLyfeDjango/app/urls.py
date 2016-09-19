@@ -8,8 +8,8 @@ from app import views
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UsersView)
-router.register(r'groups', views.GroupsView)
-router.register(r'permissions', views.PermissionsView)
+# router.register(r'groups', views.GroupsView)
+# router.register(r'permissions', views.PermissionsView)
 router.register(r'exercise_types', views.ExerciseTypesView)
 router.register(r'muscle_groups', views.MuscleGroupsView)
 router.register(r'muscles', views.MusclesView)

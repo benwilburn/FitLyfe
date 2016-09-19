@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 import json
 from django.contrib.auth import logout, login, authenticate
 from app.models import *
+from django.views.decorators.csrf import csrf_exempt
 
 # from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
@@ -19,15 +20,15 @@ class UsersView(viewsets.ModelViewSet):
     queryset = model.objects.all()
     serializer_class = UserSerializer
 
-class GroupsView(viewsets.ModelViewSet):
-    model = Group
-    queryset = model.objects.all()
-    serializer_class = GroupSerializer
-
-class PermissionsView(viewsets.ModelViewSet):
-    model = Permission
-    queryset = model.objects.all()
-    serializer_class = PermissionSerializer
+# class GroupsView(viewsets.ModelViewSet):
+#     model = Group
+#     queryset = model.objects.all()
+#     serializer_class = GroupSerializer
+#
+# class PermissionsView(viewsets.ModelViewSet):
+#     model = Permission
+#     queryset = model.objects.all()
+#     serializer_class = PermissionSerializer
 
 class ExerciseTypesView(viewsets.ModelViewSet):
     model = ExerciseType
@@ -59,6 +60,8 @@ class WorkoutTrackerExercisesView(viewsets.ModelViewSet):
     queryset = model.objects.all()
     serializer_class = WorkoutTrackerExerciseSerializer
 
+
+@csrf_exempt
 def register_user(request):
     '''
         Function to catch registration of user from login.html.
@@ -105,18 +108,22 @@ def register_user(request):
     else:
         return Http404
 
-
+@csrf_exempt
 def login_user(request):
     data = json.loads(request.body.decode())
 
     username = data['username']
     password = data['password']
 
-    user = authenticate(username=username, password=password)
+    authenticated_user = authenticate(username=username, password=password)
 
-    if user is not None:
-        login(request, user)
+    success = True
+    if authenticated_user is not None:
+        login(request=request, user=authenticated_user)
         # print('login user', request.user)
-        return user
+        # return user
     else:
-        return Http404
+        success = False
+
+    data = json.dumps({'success': success})
+    return HttpResponse(data, content_type='application/json')
