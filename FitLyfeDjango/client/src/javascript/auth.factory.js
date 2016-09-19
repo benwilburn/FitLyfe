@@ -35,24 +35,5 @@ app.factory('AuthFactory', [
       getUserObject(){
         return currentUserObject;
       }
-      // },
-      // getUserObject () {
-      //   let currentUser = new Promise((resolve, reject) => {
-      //     RootFactory.getApiRoot().then(res => {
-      //       $http.get(res.users)
-      //       .then(users => {
-      //         allUsers = users.data
-      //         currentUsername = this.getUsername();
-      //         for (var i = 0; i < allUsers.length; i++){
-      //           if (currentUsername === allUsers[i].username) {
-      //             resolve(allUsers[i]);
-      //           }
-      //         }
-      //         reject(null);
-      //       })
-      //     });
-      //   })
-      //   return currentUser;
-      // }
     }
   }]);

@@ -3,8 +3,8 @@ angular.module('FitLyfe')
   $scope.title = "Home Page";
   $scope.currentUsername = AuthFactory.getUsername();
 
-  currentUser = AuthFactory.getUserObject();
-  console.log('currentUserObject', currentUser.username + ' is here!');
+  let currentUser = AuthFactory.getUserObject();
+  console.log('currentUserObject', currentUser.user_type + ' is here!');
 
   $scope.logout = () => {
     AuthFactory.logout();
