@@ -1,4 +1,4 @@
-app.factory( "AuthFactory", ['$cookies', function($cookies) {
+app.factory( "AuthFactory", ['$cookies', '$location', function($cookies, $location) {
 
   let encodedCredentials = "";
   let decodedCredentials = {"username": "", "password": ""};
@@ -21,11 +21,12 @@ app.factory( "AuthFactory", ['$cookies', function($cookies) {
     },
     getDecodedCredentials: () => {
       return decodedCredentials.username;
+    },
+    logout: () => {
+      console.log('Logout');
+      $cookies.remove('workoutCreds');
+      $location.path('/');
     }
-    // logout: () => {
-    //   console.log('Logout');
-    //
-    // }
 
   };
 }]);

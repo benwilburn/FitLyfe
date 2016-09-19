@@ -15,8 +15,7 @@ angular.module('FitLyfe')
   )
 
   $scope.logout = () => {
-    $cookies.remove('workoutCreds');
-    $location.path('/');
+    AuthFactory.logout();
   }
   // } else {
   //   $location.path('/');
