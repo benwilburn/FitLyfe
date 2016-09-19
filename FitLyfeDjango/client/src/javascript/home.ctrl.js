@@ -1,18 +1,12 @@
 angular.module('FitLyfe')
 .controller('homeCtrl', ['$scope', 'RootFactory', 'AuthFactory', '$location', '$cookies', function($scope, RootFactory, AuthFactory, $location, $cookies){
-  $scope.username = AuthFactory.getUsername();
   $scope.title = "Home Page";
-  // $scope.user = username;
+  $scope.currentUsername = AuthFactory.getUsername();
 
-  RootFactory.getApiRoot()
-    .then(root => {
-      console.log('home root call')
-      $scope.root = root;
-    }
-  )
+  currentUser = AuthFactory.getUserObject();
+  console.log('currentUserObject', currentUser.username + ' is here!');
 
   $scope.logout = () => {
     AuthFactory.logout();
   }
-
 }])

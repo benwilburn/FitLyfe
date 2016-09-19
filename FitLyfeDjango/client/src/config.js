@@ -1,6 +1,6 @@
 // angular.module('FitLyfe')
 let requiresAuth = ($location, AuthFactory) => new Promise((resolve, reject) => {
-  if (AuthFactory.read()) {
+  if (AuthFactory.credentials()) {
     console.log("User is authenticated, resolve route promise");
     resolve();
   } else {
@@ -9,6 +9,24 @@ let requiresAuth = ($location, AuthFactory) => new Promise((resolve, reject) => 
     $location.path("/");
   }
 });
+
+let currentUserObject = (AuthFactory, RootFactory, $http) => new Promise((resolve, reject) => {
+  RootFactory.getApiRoot().then(res => {
+    $http.get(res.users)
+    .then(users => {
+      allUsers = users.data
+      currentUsername = AuthFactory.getUsername();
+      for (var i = 0; i < allUsers.length; i++){
+        if (currentUsername === allUsers[i].username) {
+          resolve(allUsers[i]);
+          AuthFactory.setUserObject(allUsers[i]);
+        }
+      }
+      reject(null);
+    })
+  });
+})
+
 
 app.config(($routeProvider, $httpProvider) => {
   $routeProvider
@@ -19,6 +37,6 @@ app.config(($routeProvider, $httpProvider) => {
   .when('/home/', {
     templateUrl: 'src/templates/home.html',
     controller: 'homeCtrl',
-    resolve: { requiresAuth }
+    resolve: { requiresAuth, currentUserObject }
   })
 })
