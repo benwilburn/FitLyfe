@@ -1,6 +1,6 @@
 // angular.module('FitLyfe')
 let requiresAuth = ($location, AuthFactory) => new Promise((resolve, reject) => {
-  if (AuthFactory.getEncodedCredentials()) {
+  if (AuthFactory.read()) {
     console.log("User is authenticated, resolve route promise");
     resolve();
   } else {

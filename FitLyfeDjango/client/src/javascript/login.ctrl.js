@@ -40,13 +40,13 @@ app.controller('loginCtrl', [
         out on refresh
          */
 
-        AuthFactory.encodeCredentials({
+        AuthFactory.credentials({
           username: $scope.userName,
           password: $scope.userPassword
         });
         // create cookie and authorization headers for http requests etc.
-        $cookies.put("workoutCreds", AuthFactory.getEncodedCredentials());
-        $http.defaults.headers.common.Authorization = "Basic " + AuthFactory.getEncodedCredentials();
+        // $cookies.put("workoutCreds", AuthFactory.getEncodedCredentials());
+        // $http.defaults.headers.common.Authorization = "Basic " + AuthFactory.credentials();
         // Redirect to home page
         $location.path("/home/");
       }
