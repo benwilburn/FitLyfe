@@ -27,7 +27,7 @@ class User(AbstractUser):
 class ExerciseType(models.Model):
     name = models.CharField(max_length=50)
     set_range = models.CharField(max_length=3, validators=[validate_comma_separated_integer_list])
-    rep_range_per_set = models.CharField(max_length=3, validators=[validate_comma_separated_integer_list])
+    rep_range_per_set = models.CharField(max_length=5, validators=[validate_comma_separated_integer_list])
     percentage_range = models.CharField(max_length=5, validators=[validate_comma_separated_integer_list])
     rest_time = models.DurationField()
     exercise_limit = models.IntegerField()
@@ -54,10 +54,11 @@ class ExerciseLift(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
     # video = models.FileField(upload_to='exercise_videos/')
-    video = models.URLField(max_length=500)
+    video = models.FileField(upload_to='lifts/')
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='lifts_created')
     muscles_used = models.ManyToManyField(MuscleGroup, related_name='associated_lifts')
     exercise_type = models.ManyToManyField(ExerciseType, related_name='associated_lifts')
+    exercise_priority = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

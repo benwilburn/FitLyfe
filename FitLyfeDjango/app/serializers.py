@@ -13,29 +13,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     model = User
     fields = ('id', 'url', 'username', 'first_name', 'last_name', 'bio', 'city', 'date_joined', 'user_type', 'lifts_created', 'workouts_completed')
 
-# class GroupSerializer(serializers.HyperlinkedModelSerializer):
-#
-#     class Meta:
-#         model = Group
-#         fields = ('id', 'url', 'name', 'permissions')
-#
-# class PermissionSerializer(serializers.HyperlinkedModelSerializer):
-#
-#     class Meta:
-#         model = Permission
-#         fields = ('id', 'url', 'name', 'content_type', 'codename')
-
-class ExerciseTypeSerializer(serializers.HyperlinkedModelSerializer):
-
-    class Meta:
-        model = ExerciseType
-        fields = ('id', 'url', 'name', 'set_range', 'rep_range_per_set', 'percentage_range', 'rest_time', 'exercise_limit', 'total_rep_range', 'associated_lifts')
-
-class MuscleGroupSerializer(serializers.HyperlinkedModelSerializer):
-
-    class Meta:
-        model = MuscleGroup
-        fields = ('id', 'url', 'name', 'associated_muscles', 'associated_lifts')
 
 class MusclesSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -43,20 +20,41 @@ class MusclesSerializer(serializers.HyperlinkedModelSerializer):
         model = Muscle
         fields = ('id', 'url', 'name', 'muscle_location', 'muscle_group')
 
+class MuscleGroupSerializer(serializers.HyperlinkedModelSerializer):
+
+    associated_muscles = MusclesSerializer(many=True, read_only=True)
+    # associated_lifts = ExerciseLiftSerializer(many=True)
+
+    class Meta:
+        model = MuscleGroup
+        fields = ('id', 'url', 'name', 'associated_muscles', 'associated_lifts')
+
 class ExerciseLiftSerializer(serializers.HyperlinkedModelSerializer):
+
+    muscles_used = MuscleGroupSerializer(many=True, read_only=True)
 
     class Meta:
         model = ExerciseLift
-        fields = ('id', 'url', 'name', 'description', 'video', 'creator', 'muscles_used', 'exercise_type')
+        fields = ('id', 'url', 'name', 'description', 'video', 'muscles_used', 'exercise_type', 'creator', 'exercise_priority')
 
-class WorkoutTrackerSerializer(serializers.HyperlinkedModelSerializer):
+class ExerciseTypeSerializer(serializers.HyperlinkedModelSerializer):
+
+    associated_lifts = ExerciseLiftSerializer(many=True, read_only=True)
 
     class Meta:
-        model = WorkoutTracker
-        fields = ('id', 'url', 'name', 'date', 'athlete', 'exercises_completed')
+        model = ExerciseType
+        fields = ('id', 'url', 'name', 'set_range', 'rep_range_per_set', 'percentage_range', 'rest_time', 'exercise_limit', 'total_rep_range', 'associated_lifts')
 
 class WorkoutTrackerExerciseSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = WorkoutTrackerExercise
         fields = ('id', 'url', 'lift', 'sets_completed', 'total_reps_completed', 'workout')
+
+class WorkoutTrackerSerializer(serializers.HyperlinkedModelSerializer):
+
+    exercises_completed = WorkoutTrackerExerciseSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = WorkoutTracker
+        fields = ('id', 'url', 'name', 'date', 'athlete', 'exercises_completed')

@@ -1,3 +1,27 @@
 <h1>Welcome {{ currentUsername }}</h1>
 <h5>{{ title }}</h5>
+
+<div class="checkbox">
+  <input id='power' type='checkbox' ng-model='power'>
+  <label for='power'>Power</label>
+  <input id='strength' type='checkbox' ng-model='strength'>
+  <label for='strength'>Strength</label>
+  <input id='endurance' type='checkbox' ng-model='endurance'>
+  <label for='endurance'>Endurance</label>
+  <input id='hypertrophy' type='checkbox' ng-model='hypertrophy'>
+  <label for='hypertrophy'>Hypertrophy(Size)</label>
+
+  <!-- <input id='chest' type='checkbox' ng-model='chest'>
+  <label for='chest'>Chest</label> -->
+  <button ng-click='generateWorkout()'>Generate Workout</button>
+</div>
+
+<div class="workoutSugg">
+  <h4>Workout</h4>
+  <div ng-repeat="item in workout">
+    <p>{{item.name}}</p>
+    <!-- <p>{{item.description}}</p> -->
+    <p>{{item.exercise_type.rep_range_per_set}} reps</p>
+  </div>
+</div>
 <button ng-click='logout()'>Logout</button>

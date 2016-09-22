@@ -54,7 +54,7 @@ MIDDLEWARE = [
 
 
 CORS_ORIGIN_ALLOW_ALL = True
-ROOT_URLCONF = 'app.urls'
+ROOT_URLCONF = 'FitLyfeDjango.urls'
 CORS_ORIGIN_WHITELIST = (
     'localhost:8080',
 )
@@ -129,5 +129,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = '/Users/Bwilburn/workSpace/FitLyfe/'
-MEDIA_URL = '/media/'
+MEDIA_ROOT = '/Users/Bwilburn/workSpace/FitLyfe/FitLyfeDjango/instructional_videos'
+MEDIA_URL = '/instructional_videos/'
