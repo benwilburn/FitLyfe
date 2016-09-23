@@ -18,7 +18,7 @@ angular.module('FitLyfe')
     return Math.floor(Math.random() * (arrayLength))
   }
 
-  function workoutBuilder (exercise_limit, lift_array, rep_range, set_range, percentage_range, rest_time, tota_ideal_rep_range) {
+  function workoutBuilder (exercise_limit, lift_array, rep_range, set_range, percentage_range, rest_time, total_ideal_rep_range) {
     for(var h = 0; h < exercise_limit; h++){
       randomNumber = randomGenerator(lift_array.length)
       if($scope.workout.indexOf(lift_array[randomNumber]) === -1){

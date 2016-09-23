@@ -55,10 +55,63 @@ class WorkoutTrackersView(viewsets.ModelViewSet):
     queryset = model.objects.all()
     serializer_class = WorkoutTrackerSerializer
 
+
+    def create(self, request):
+        athlete = User.objects.get(id=request.data['athlete'])
+
+
+        new_workout = WorkoutTracker.objects.create(
+            name = request.data['name'],
+            athlete = athlete
+        )
+
+        new_workout.save()
+
+        success = True
+        if new_workout is not None:
+            pass
+            # return HttpResponseRedirect('/')
+        else:
+            success = False
+
+        data = json.dumps({'success': success})
+        return HttpResponse(data, content_type='application/json')
+        # return HttpResponse(status=201)
+
 class WorkoutTrackerExercisesView(viewsets.ModelViewSet):
     model = WorkoutTrackerExercise
     queryset = model.objects.all()
     serializer_class = WorkoutTrackerExerciseSerializer
+
+# @csrf_exempt
+# def create_new_workout(request):
+#     '''
+#     Function to catch name of workout object they want to be created from new_workout.html.
+#     Upon form submission, the values of the fields are passed in via the arg 'request'
+#     and then set to variables below.
+#
+#     Following we create a new workout object by setting the variables passed in the the create_user function
+#     below and then we save it to our database.
+#
+#     Args:
+#         'request' - the values passed in as string via the $http call from newWorkoutCtrl of new_workout.html
+#     '''
+#
+#     data = json.loads(request.body.decode())
+#
+#     name = data['name']
+#     athlete = data['athlete']
+#
+#     workout = WorkoutTracker.objects.create(name=name, athlete=athlete)
+#
+#     success = True
+#     if workout is not None:
+#         pass
+#     else:
+#         success = False
+#
+#     data = json.dumps({'success': success})
+#     return HttpResponse(data, content_type='application/json')
 
 
 @csrf_exempt
@@ -72,7 +125,7 @@ def register_user(request):
         below and then we save it to our database.
 
         Args:
-            'request' - the values passed in as string via the $http call from register-ctrl of login.html
+            'request' - the values passed in as string via the $http call from register.ctrl of register.html
     '''
 
     # data = imported json and using the .loads() function, passed in the
@@ -82,31 +135,37 @@ def register_user(request):
     data = json.loads(request.body.decode())
 
     # ASSIGNS CORRESPONDING OBJ VALUE TO A VARIABLE
-    username =  data['username']
+    username = data['username']
     password = data['password']
-    email = data['email']
     first_name = data['first_name']
     last_name = data['last_name']
+    bio = data['bio']
+    city = data['city']
+    user_type = data['usertype']
 
     # CALLS CREATE USER FUNCTION ON USER.OBJECTS
-    user = User.objects.create_user(
-                                    username=username,
+    user = User.objects.create_user(username=username,
                                     password=password,
-                                    email=email,
                                     first_name=first_name,
                                     last_name=last_name,
-                                    )
+                                    bio=bio,
+                                    city=city,
+                                    user_type=user_type)
 
     # SAVES USER DATA THAT WAS JUST POSTED
     user.save()
 
     currentUser = authenticate(username=username, password=password)
 
+    success = True
     if currentUser is not None:
         login(request, currentUser)
-        return HttpResponseRedirect('/')
+        # return HttpResponseRedirect('/')
     else:
-        return Http404
+        success = False
+
+    data = json.dumps({'success': success})
+    return HttpResponse(data, content_type='application/json')
 
 @csrf_exempt
 def login_user(request):

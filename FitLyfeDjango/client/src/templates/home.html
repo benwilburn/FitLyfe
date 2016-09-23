@@ -18,7 +18,7 @@
 
 <div class="workoutSugg">
   <h4>Workout</h4>
-  <div ng-repeat="item in workout">
+  <div ng-repeat="item in workout | orderBy: 'exercise_priority'">
     <p>{{item.name}}</p>
     <!-- <p>{{item.description}}</p> -->
     <p>{{item.exercise_type.rep_range_per_set}} reps</p>

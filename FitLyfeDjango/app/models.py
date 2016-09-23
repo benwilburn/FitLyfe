@@ -32,6 +32,7 @@ class ExerciseType(models.Model):
     rest_time = models.DurationField()
     exercise_limit = models.IntegerField()
     total_rep_range = models.CharField(max_length=6, validators=[validate_comma_separated_integer_list])
+    type_priority = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

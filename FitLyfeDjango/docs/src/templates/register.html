@@ -1,0 +1,19 @@
+<h1>{{loginTitle}}</h1>
+<label>username</label>
+<input ng-model="username" type='text'>
+<label>password</label>
+<input ng-model='userpassword' type="password">
+<label>First Name</label>
+<input ng-model="userfirstname" type='text'>
+<label>Last Name</label>
+<input ng-model='userlastname' type="text">
+<label>Bio</label>
+<textarea ng-model="userbio" type='text'></textarea>
+<label>City</label>
+<input ng-model='usercity' type="text">
+<label>Athlete or Trainer?</label>
+<select ng-model="usertype" type='text'>
+  <option>Athlete</option>
+  <option>Trainer</option>
+</select>
+<button ng-click="register()">Register</button>

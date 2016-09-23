@@ -43,9 +43,11 @@ class ExerciseTypeSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = ExerciseType
-        fields = ('id', 'url', 'name', 'set_range', 'rep_range_per_set', 'percentage_range', 'rest_time', 'exercise_limit', 'total_rep_range', 'associated_lifts')
+        fields = ('id', 'url', 'name', 'set_range', 'rep_range_per_set', 'percentage_range', 'rest_time', 'exercise_limit', 'total_rep_range', 'type_priority' ,'associated_lifts')
 
 class WorkoutTrackerExerciseSerializer(serializers.HyperlinkedModelSerializer):
+
+    lift = ExerciseLiftSerializer(read_only=True)
 
     class Meta:
         model = WorkoutTrackerExercise
@@ -53,6 +55,7 @@ class WorkoutTrackerExerciseSerializer(serializers.HyperlinkedModelSerializer):
 
 class WorkoutTrackerSerializer(serializers.HyperlinkedModelSerializer):
 
+    athlete = UserSerializer(read_only=True)
     exercises_completed = WorkoutTrackerExerciseSerializer(many=True, read_only=True)
 
     class Meta:

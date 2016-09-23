@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^login_user/$', views.login_user),
     url(r'^register_user/$', views.register_user),
+    # url(r'^new_workout/$', views.create_new_workout),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
