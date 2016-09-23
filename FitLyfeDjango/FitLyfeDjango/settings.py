@@ -57,6 +57,8 @@ CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'FitLyfeDjango.urls'
 CORS_ORIGIN_WHITELIST = (
     'localhost:8080',
+    'lyfe-fit.com',
+    '45.55.253.64'
 )
 
 TEMPLATES = [
