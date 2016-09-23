@@ -53,4 +53,9 @@ app.config(($routeProvider) => {
     controller: 'newWorkoutCtrl',
     resolve: { requiresAuth, currentUserObject }
   })
+  .when('/workouts/:workoutId', {
+    templateUrl: 'src/templates/edit_workout.html',
+    controller: 'editWorkoutCtrl',
+    resolve: { requiresAuth, currentUserObject }
+  })
 })

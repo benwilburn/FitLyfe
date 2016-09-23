@@ -31,6 +31,14 @@ app.factory('RootFactory', ['$http', function($http){
         })
       })
       return user_workouts;
+    },
+    getAllWorkoutExercises: () => {
+      let workoutExercises = apiRoot.then(res => {
+        return $http.get(res.data.workout_tracker_exercises).then(workoutExercisesData => {
+          return workoutExercisesData.data;
+        })
+      })
+      return workoutExercises;
     }
   }
 }])

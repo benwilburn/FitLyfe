@@ -83,6 +83,25 @@ class WorkoutTrackerExercisesView(viewsets.ModelViewSet):
     queryset = model.objects.all()
     serializer_class = WorkoutTrackerExerciseSerializer
 
+    def create(self, request):
+        lift = ExerciseLift.objects.get(id=request.data['lift'])
+        workout = WorkoutTracker.objects.get(id=request.data['workout'])
+
+        workout_tracker_exercise = WorkoutTrackerExercise.objects.create(
+            lift = lift,
+            workout = workout,
+            sets_completed = 0,
+            total_reps_completed = 0
+        )
+
+        success = True;
+        if workout_tracker_exercise is not None:
+            workout_tracker_exercise.save()
+        else:
+            success = False;
+
+        data = json.dumps({'success': success})
+        return HttpResponse(data, content_type='application/json')
 # @csrf_exempt
 # def create_new_workout(request):
 #     '''

@@ -1,0 +1,10 @@
+<h1>{{title}}</h1>
+
+<h4>{{workoutToEdit.date}}, {{workoutToEdit.name}}'s Lifts:</h4>
+<div>
+  <label for='exercises_completed'>What Exercises did you complete?</label>
+  <select multiple ng-model="workoutToEdit.exercises_completed" ng-options="lift.name for lift in allLifts">
+    <!-- <option ng-repeat='lift in allLifts'>{{lift.name}}</option> -->
+  </select>
+  <button ng-click="addToExercise()">Edit</button>
+</div>
