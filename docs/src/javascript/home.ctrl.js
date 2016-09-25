@@ -2,17 +2,16 @@ angular.module('FitLyfe')
 .controller('homeCtrl', ['$scope', 'RootFactory', 'AuthFactory', '$location', '$cookies', '$timeout', function($scope, RootFactory, AuthFactory, $location, $cookies, $timeout){
   $scope.title = "Home Page";
   $scope.currentUsername = AuthFactory.getUsername();
+  console.log('$scope.currentUsername', $scope.currentUsername);
+
+  if($scope.currentUsername === null){
+    $scope.greeting = "Welcome, Guest!";
+  } else {
+    $scope.greeting = "Welcome, " + $scope.currentUsername;
+  }
 
   let currentUser = AuthFactory.getUserObject();
-  console.log('currentUserObject', currentUser.user_type + ' is here!');
-
-  // let lifts_that_match_criteria = []
-  // console.log('lifts_that_match_criteria out of promise', lifts_that_match_criteria);
-  // let power_lift_array = [];
-  // let strength_lift_array = [];
-  // let endurance_lift_array = [];
-  // let hypertrophy_lift_array = [];
-  // $scope.workout = []
+  // console.log('currentUserObject', currentUser.user_type + ' is here!');
 
   function randomGenerator(arrayLength){
     return Math.floor(Math.random() * (arrayLength))
@@ -233,29 +232,16 @@ angular.module('FitLyfe')
       //   }
       // }
       // console.log('lifts_that_match_criteria', lifts_that_match_criteria)
-      console.log('power_lift_array', power_lift_array)
-      console.log('power_exercise_limit', power_exercise_limit);
-      console.log('strength_lift_array', strength_lift_array)
-      console.log('strength_exercise_limit', strength_exercise_limit);
-      console.log('endurance_lift_array', endurance_lift_array)
-      console.log('endurance_exercise_limit', endurance_exercise_limit);
-      console.log('hypertrophy_lift_array', hypertrophy_lift_array)
-      console.log('hypertrophy_exercise_limit', hypertrophy_exercise_limit);
+      // console.log('power_lift_array', power_lift_array)
+      // console.log('power_exercise_limit', power_exercise_limit);
+      // console.log('strength_lift_array', strength_lift_array)
+      // console.log('strength_exercise_limit', strength_exercise_limit);
+      // console.log('endurance_lift_array', endurance_lift_array)
+      // console.log('endurance_exercise_limit', endurance_exercise_limit);
+      // console.log('hypertrophy_lift_array', hypertrophy_lift_array)
+      // console.log('hypertrophy_exercise_limit', hypertrophy_exercise_limit);
 
 
-
-      // if($scope.power && !$scope.strength && !scope.endurance && !scope.hypertrophy){
-      //   power_exercise_limit = 4;
-      // }
-      // if($scope.strength && !$scope.power && !scope.endurance && !scope.hypertrophy){
-      //   strength_exercise_limit = 6;
-      // }
-      // if($scope.endurance && !$scope.strength && !scope.power && !scope.hypertrophy){
-      //   endurance_exercise_limit = 10;
-      // }
-      // if($scope.hypertrophy && !$scope.power && !scope.endurance && !scope.strength){
-      //   hypertrophy_exercise_limit = 10;
-      // }
       if($scope.power && $scope.strength && $scope.endurance && $scope.hypertrophy){
         power_exercise_limit = 2;
         strength_exercise_limit = 3;
@@ -316,55 +302,18 @@ angular.module('FitLyfe')
         hypertrophy_exercise_limit = 6;
         endurance_exercise_limit = 0;
       }
-      // if($scope.power && $scope.strength && !scope.endurance & !scope.hypertrophy){
-      //   power_exercise_limit = 3;
-      //   strength_exercise_limit = 4;
-      // }
 
       workoutBuilder(power_exercise_limit, power_lift_array, '3 - 6', '4 - 6', '82% - 87%', '3:00', '18 - 20');
       workoutBuilder(strength_exercise_limit, strength_lift_array, '1 - 4', '4 - 6', '92% - 98%', '5:00', '6-20');
       workoutBuilder(hypertrophy_exercise_limit, hypertrophy_lift_array, '8 - 12', '5 - 6', '65% - 75%', '2:30', '48 - 60');
       workoutBuilder(endurance_exercise_limit, endurance_lift_array, '12 - 20', '4 - 6', '55% - 65%', '0:45', '72 - 80');
 
-
-      // for(var h = 0; h < strength_exercise_limit; h++){
-      //   randomNumber = randomGenerator(strength_lift_array.length)
-      //   if($scope.workout.indexOf(strength_lift_array[randomNumber]) === -1){
-      //     $scope.workout.push(strength_lift_array[randomNumber])
-      //     console.log("scope.workout.length: strength = ", $scope.workout.length);
-      //   } else {
-      //     console.log('ignored lift', strength_lift_array[randomNumber]);
-      //     h -= 1;
-      //   }
-      // }
-      // for(var h = 0; h < endurance_exercise_limit; h++){
-      //   randomNumber = randomGenerator(endurance_lift_array.length)
-      //   if($scope.workout.indexOf(endurance_lift_array[randomNumber]) === -1){
-      //     $scope.workout.push(endurance_lift_array[randomNumber])
-      //     console.log("scope.workout.length: endurance = ", $scope.workout.length);
-      //   } else {
-      //     console.log('ignored lift', endurance_lift_array[randomNumber]);
-      //     h -= 1;
-      //   }
-      // }
-      // for(var h = 0; h < hypertrophy_exercise_limit; h++){
-      //   randomNumber = randomGenerator(hypertrophy_lift_array.length)
-      //   if($scope.workout.indexOf(hypertrophy_lift_array[randomNumber]) === -1){
-      //     $scope.workout.push(hypertrophy_lift_array[randomNumber])
-      //     console.log("scope.workout.length: hypertrophy = ", $scope.workout.length);
-      //   } else {
-      //     console.log('ignored lift', hypertrophy_lift_array[randomNumber]);
-      //     h -= 1;
-      //   }
-      // }
-
       // $timeout();
       console.log('endurance_lift_array', endurance_lift_array);
       console.log('$scope.workout', $scope.workout);
     }
   })
-
-  $scope.logout = () => {
-    AuthFactory.logout();
-  }
+  // $scope.logout = () => {
+  //   AuthFactory.logout();
+  // }
 }])

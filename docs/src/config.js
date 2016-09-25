@@ -1,3 +1,9 @@
+app.config(function($sceProvider) {
+  // Completely disable SCE.  For demonstration purposes only!
+  // Do not use in new projects.
+  $sceProvider.enabled(false);
+});
+
 // angular.module('FitLyfe')
 app.config(($routeProvider) => {
 
@@ -31,17 +37,17 @@ app.config(($routeProvider) => {
 
   $routeProvider
   .when('/', {
+    templateUrl: 'src/templates/home.html',
+    controller: 'homeCtrl'
+    // resolve: { currentUserObject }
+  })
+  .when('/login', {
     templateUrl: 'src/templates/login.html',
     controller: 'loginCtrl'
   })
   .when('/register/', {
     templateUrl: 'src/templates/register.html',
     controller: 'registerCtrl'
-  })
-  .when('/home/', {
-    templateUrl: 'src/templates/home.html',
-    controller: 'homeCtrl',
-    resolve: { currentUserObject }
   })
   .when('/workouts/', {
     templateUrl: 'src/templates/workouts.html',

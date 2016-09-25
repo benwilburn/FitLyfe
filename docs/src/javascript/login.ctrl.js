@@ -16,11 +16,6 @@ app.controller('loginCtrl', [
   console.log('login control');
   $scope.loginTitle = 'login page';
 
-  // userData = {
-  //   username = '',
-  //   password = ''
-  // }
-
   $scope.login = () => {
     $http({
       url: `${API_URL}/login_user/`,

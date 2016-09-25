@@ -26,8 +26,12 @@ app.factory('AuthFactory', [
       },
       getUsername () {
         // RETURNS CREDS.USERNAME
-        let creds = window.atob(userCredentials).split(":");
-        return creds[0]
+        if(userCredentials != null){
+          let creds = window.atob(userCredentials).split(":");
+          return creds[0]
+        } else {
+          return null;
+        }
       },
       setUserObject (user) {
         currentUserObject = user;

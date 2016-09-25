@@ -1,0 +1,65 @@
+<div ng-include="'src/templates/nav.html'" ng-controller='navCtrl as nav'></div>
+
+<h1>{{ greeting }}</h1>
+<!-- <h5>{{ title }}</h5> -->
+
+<div class='container-fluid'>
+  <div class="checkbox col-sm-4">
+    <div>
+      <input id='power' type='checkbox' ng-model='power'>
+      <label for='power'>Power</label>
+    </div>
+    <div>
+      <input id='strength' type='checkbox' ng-model='strength'>
+      <label for='strength'>Strength</label>
+    </div>
+    <div>
+      <input id='endurance' type='checkbox' ng-model='endurance'>
+      <label for='endurance'>Endurance</label>
+    </div>
+    <div>
+      <input id='hypertrophy' type='checkbox' ng-model='hypertrophy'>
+      <label for='hypertrophy'>Hypertrophy(Size)</label>
+    </div>
+
+    <!-- <input id='chest' type='checkbox' ng-model='chest'>
+    <label for='chest'>Chest</label> -->
+    <div>
+      <button ng-click='generateWorkout()'>Generate Workout</button>
+    </div>
+  </div>
+
+  <div class="workoutSugg col-sm-8">
+    <h4>Workout</h4>
+    <div>
+    <table class='table table-responsive'>
+      <thead>
+        <tr>
+          <th>Lift</th>
+          <th>Set Range</th>
+          <th>Rep Range Per Set</th>
+          <th>% Range</th>
+          <th>Ideal time b/t sets</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in workout | orderBy: 'exercise_priority' | orderBy: 'muscles_used' | orderBy: 'exercise_type.type_priority'">
+          <td>{{ item.name }}&nbsp</td>
+          <td>{{ item.set_range }}</td>
+          <td>{{ item.rep_range_per_set }}</td>
+          <td>{{ item.percentage_range }}</td>
+          <td>{{ item.rest_time }}</td>
+          <td><video src='{{ item.video }}' width='300' controls='true'><p>Your browser does not support videos</p></video></td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- <ng-repeat="item in workout | orderBy: 'exercise_priority' | orderBy: 'muscles_used' | orderBy: 'exercise_type.type_priority'"> -->
+      <!-- <p>{{item.name}}</p> -->
+      <!-- <p>{{item.description}}</p> -->
+
+      <!-- <p>{{item.exercise_type.rep_range_per_set}} reps</p> -->
+    </div>
+  </div>
+  <!-- <button ng-click='logout()'>Logout</button> -->
+</div>
