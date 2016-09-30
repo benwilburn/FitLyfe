@@ -14,6 +14,7 @@ app.factory('AuthFactory', [
         }
       },
       logout () {
+        console.log('user being logged out')
         userCredentials = null;
         $cookies.remove('workoutCreds');
         $location.path("/");

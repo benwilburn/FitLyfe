@@ -1,8 +1,8 @@
 <h1>{{title}}</h1>
 
 <div ng-repeat='item in user_workouts'>
-  <p>{{ item.name }}</p>
-  <p>{{ item.date }}</p>
+  <p>{{ item.date }}: {{ item.name }}</p>
+  <!-- <p>{{ item.date }}</p> -->
   <div ng-repeat='info in item.exercises_completed'>
     <p>{{ info.name }}</p>
     <p>{{ info.sets_completed }} sets</p>

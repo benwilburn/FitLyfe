@@ -64,4 +64,8 @@ app.config(($routeProvider) => {
     controller: 'editWorkoutCtrl',
     resolve: { requiresAuth, currentUserObject }
   })
+  .when('/in_development', {
+    templateUrl: 'src/templates/in_development.html',
+    controller: 'inDevelopmentCtrl',
+  })
 })

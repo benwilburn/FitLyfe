@@ -41,7 +41,7 @@ app.controller('loginCtrl', [
           password: $scope.userPassword
         });
         // Redirect to home page
-        $location.path("/home/");
+        $location.path("/");
       }
 
     }).error(console.error);
