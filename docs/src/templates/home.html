@@ -40,7 +40,7 @@
           <th>Rep Range Per Set</th>
           <th>% Range</th>
           <th>Ideal time b/t sets</th>
-          <th>Example</th>
+          <!-- <th>Example</th> -->
         </tr>
       </thead>
       <tbody>
@@ -50,8 +50,9 @@
           <td>{{ item.rep_range_per_set }}</td>
           <td>{{ item.percentage_range }}</td>
           <td>{{ item.rest_time }}</td>
-          <td><video src='{{ item.video }}' width='300' controls='true'><p>Your browser does not support videos</p></video></td>
+          <td><video src='{{ item.video }}' width='200' controls='true'><p>Your browser does not support videos</p></video></td>
         </tr>
+        <!-- <p><video src='{{ item.video }}' width='300' controls='true'><p>Your browser does not support videos</p></video></p> -->
       </tbody>
     </table>
     <!-- <ng-repeat="item in workout | orderBy: 'exercise_priority' | orderBy: 'muscles_used' | orderBy: 'exercise_type.type_priority'"> -->
