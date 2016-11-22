@@ -91,3 +91,6 @@ ENV/
 
 # Database
 FitLyfeDjango/db.sqlite3
+
+# Videos
+instructional_videos
