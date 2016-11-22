@@ -129,8 +129,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_ROOT= '../docs'
+STATIC_ROOT= os.path.join(BASE_DIR, "static/")
 STATIC_URL = '/static/'
+STATICFILES_DIRS = ['FitLyfe/docs']
 
 MEDIA_ROOT = '/Users/Bwilburn/workSpace/FitLyfe/FitLyfeDjango/instructional_videos'
 MEDIA_URL = '/instructional_videos/'
