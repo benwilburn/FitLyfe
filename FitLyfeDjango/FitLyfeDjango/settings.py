@@ -131,6 +131,7 @@ USE_TZ = True
 
 STATIC_ROOT= os.path.join(BASE_DIR, "static/")
 STATIC_URL = '/static/'
+STATICFILES_DIRS = ['FitLyfe/docs']
 
 MEDIA_ROOT = '/Users/Bwilburn/workSpace/FitLyfe/FitLyfeDjango/instructional_videos'
 MEDIA_URL = '/instructional_videos/'
