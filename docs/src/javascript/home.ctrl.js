@@ -5,13 +5,15 @@ angular.module('FitLyfe')
   console.log('$scope.currentUsername', $scope.currentUsername);
 
   if($scope.currentUsername === null){
-    $scope.greeting = "Welcome, Guest!";
+    $scope.greeting = "Welcome to FitLyfe, Guest!";
   } else {
-    $scope.greeting = "Welcome, " + $scope.currentUsername;
+    $scope.greeting = "Welcome to FitLyfe, " + $scope.currentUsername;
   }
 
   let currentUser = AuthFactory.getUserObject();
   // console.log('currentUserObject', currentUser.user_type + ' is here!');
+
+  $scope.workoutExists = false;
 
   function randomGenerator(arrayLength){
     return Math.floor(Math.random() * (arrayLength))
@@ -311,6 +313,8 @@ angular.module('FitLyfe')
       // $timeout();
       console.log('endurance_lift_array', endurance_lift_array);
       console.log('$scope.workout', $scope.workout);
+
+      $scope.workoutExists = true;
     }
   })
   // $scope.logout = () => {

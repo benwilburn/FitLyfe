@@ -1,0 +1,19 @@
+.lift_borders {
+  border: 0.25em solid black;
+  margin: 0em auto 1em;
+  padding: 0.5em;
+}
+
+.lift_name {
+  text-decoration: underline;
+  margin-top: 0;
+}
+
+.workout_border {
+  /*border: 0.25em solid black;*/
+  padding: 1em;
+}
+
+.fine_print {
+  size: 0.05em;
+}

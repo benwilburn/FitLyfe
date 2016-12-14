@@ -1,10 +1,23 @@
 <div ng-include="'src/templates/nav.html'" ng-controller='navCtrl as nav'></div>
+<div class="jumbotron">
+  <div class="container-fluid">
+    <h1>{{ greeting }}</h1>
+    <p>This is a Strength & Conditioning workout generator based on the NSCA programming guidelines</p>
+    <p class="fine_print"><small> - Please consult a Doctor before performing any of these workouts</small></p>
+    <p class="fine_print"><small> - If you are not an Advanced Lifter, make sure you have a trainer supervise your lifts</small></p>
+    <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p> -->
+  </div>
+</div>
 
-<h1>{{ greeting }}</h1>
+
 <!-- <h5>{{ title }}</h5> -->
 
 <div class='container-fluid'>
-  <div class="checkbox col-sm-4">
+  <div class="col-sm-12">
+    <div class="col-sm-2"><h4>Criteria</h4></div>
+    <div class="col-sm-10 text-center"><h4>Workout</h4></div>
+  </div>
+  <div class="checkbox col-sm-3">
     <div>
       <input id='power' type='checkbox' ng-model='power'>
       <label for='power'>Power</label>
@@ -29,10 +42,9 @@
     </div>
   </div>
 
-  <div class="workoutSugg col-sm-8">
-    <h4>Workout</h4>
-    <div>
-    <table class='table table-responsive'>
+  <!-- <div class="col-sm-9"> -->
+  <div class="workoutSugg workout_border col-sm-9" ng-show="workoutExists">
+    <!-- <table class='table table-responsive'>
       <thead>
         <tr>
           <th>Lift</th>
@@ -40,7 +52,6 @@
           <th>Rep Range Per Set</th>
           <th>% Range</th>
           <th>Ideal time b/t sets</th>
-          <!-- <th>Example</th> -->
         </tr>
       </thead>
       <tbody>
@@ -52,15 +63,22 @@
           <td>{{ item.rest_time }}</td>
           <td><video src='{{ item.video }}' width='200' controls='true'><p>Your browser does not support videos</p></video></td>
         </tr>
-        <!-- <p><video src='{{ item.video }}' width='300' controls='true'><p>Your browser does not support videos</p></video></p> -->
       </tbody>
-    </table>
-    <!-- <ng-repeat="item in workout | orderBy: 'exercise_priority' | orderBy: 'muscles_used' | orderBy: 'exercise_type.type_priority'"> -->
-      <!-- <p>{{item.name}}</p> -->
-      <!-- <p>{{item.description}}</p> -->
-
-      <!-- <p>{{item.exercise_type.rep_range_per_set}} reps</p> -->
+    </table> -->
+    <div class="lift_borders responsive col-sm-12" ng-repeat="item in workout | orderBy: 'exercise_type.type_priority' | orderBy: 'exercise_priority'">
+      <div class="col-sm-6">
+        <h3 class='lift_name'>{{ item.name }}</h3>
+        <p>Set Range: {{ item.set_range }}</p>
+        <p>Rep Range Per Set: {{ item.rep_range_per_set }}</p>
+        <p>% Range: {{ item.percentage_range }}</p>
+        <p>Rest Period: {{ item.rest_time }}</p>
+      </div>
+      <div class="col-sm-6">
+        <video src='{{ item.video }}' width='240' controls='true'></video>
+      </div>
+      </p>
     </div>
   </div>
+  <!-- </div> -->
   <!-- <button ng-click='logout()'>Logout</button> -->
 </div>
