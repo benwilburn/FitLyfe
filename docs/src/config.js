@@ -36,7 +36,7 @@ app.config(($routeProvider) => {
   })
 
   $routeProvider
-  .when('FitLyfe/', {
+  .when('/', {
     templateUrl: 'src/templates/home.html',
     controller: 'homeCtrl'
     // resolve: { currentUserObject }
