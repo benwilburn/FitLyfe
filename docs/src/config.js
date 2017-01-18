@@ -45,16 +45,16 @@ app.config(($routeProvider) => {
     templateUrl: 'src/templates/login.html',
     controller: 'loginCtrl'
   })
-  .when('/register/', {
+  .when('/register', {
     templateUrl: 'src/templates/register.html',
     controller: 'registerCtrl'
   })
-  .when('/workouts/', {
+  .when('/workouts', {
     templateUrl: 'src/templates/workouts.html',
     controller: 'workoutsCtrl',
     resolve: { requiresAuth, currentUserObject }
   })
-  .when('/new_workout/', {
+  .when('/new_workout', {
     templateUrl: 'src/templates/new_workout.html',
     controller: 'newWorkoutCtrl',
     resolve: { requiresAuth, currentUserObject }
