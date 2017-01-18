@@ -41,30 +41,30 @@ app.config(($routeProvider) => {
     controller: 'homeCtrl'
     // resolve: { currentUserObject }
   })
-  .when('FitLyfe/login', {
+  .when('/login', {
     templateUrl: 'src/templates/login.html',
     controller: 'loginCtrl'
   })
-  .when('FitLyfe/register', {
+  .when('/register', {
     templateUrl: 'src/templates/register.html',
     controller: 'registerCtrl'
   })
-  .when('FitLyfe/workouts', {
+  .when('/workouts', {
     templateUrl: 'src/templates/workouts.html',
     controller: 'workoutsCtrl',
     resolve: { requiresAuth, currentUserObject }
   })
-  .when('FitLyfe/new_workout', {
+  .when('/new_workout', {
     templateUrl: 'src/templates/new_workout.html',
     controller: 'newWorkoutCtrl',
     resolve: { requiresAuth, currentUserObject }
   })
-  .when('FitLyfe/workouts/:workoutId', {
+  .when('/workouts/:workoutId', {
     templateUrl: 'src/templates/edit_workout.html',
     controller: 'editWorkoutCtrl',
     resolve: { requiresAuth, currentUserObject }
   })
-  .when('FitLyfe/in_development', {
+  .when('/in_development', {
     templateUrl: 'src/templates/in_development.html',
     controller: 'inDevelopmentCtrl',
   })
