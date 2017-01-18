@@ -46,7 +46,7 @@ app.controller('registerCtrl', [
           password: $scope.userpassword
         });
         // Redirect to home page
-        $location.path("/home/");
+        $location.path("FitLyfe/");
       }
 
     }).error(console.error);

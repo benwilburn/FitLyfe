@@ -45,7 +45,7 @@ app.controller('newWorkoutCtrl', [
         //   password: $scope.userpassword
         // });
         // Redirect to home page
-        $location.path("/workouts/");
+        $location.path("FitLyfe/workouts/");
       }
 
     }).error(console.error);

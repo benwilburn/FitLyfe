@@ -1,13 +1,22 @@
 app.controller('editWorkoutCtrl', [
-  '$scope', '$location', '$http', 'API_URL', '$cookies', 'AuthFactory', 'RootFactory', '$routeParams', '$timeout', function($scope,
-                                                                                 $location,
-                                                                                 $http,
-                                                                                 API_URL,
-                                                                                 $cookies,
-                                                                                 AuthFactory,
-                                                                                 RootFactory,
-                                                                                 $routeParams,
-                                                                                 $timeout){
+  '$scope',
+  '$location',
+  '$http',
+  'API_URL',
+  '$cookies',
+  'AuthFactory',
+  'RootFactory',
+  '$routeParams',
+  '$timeout',
+  function($scope,
+           $location,
+           $http,
+           API_URL,
+           $cookies,
+           AuthFactory,
+           RootFactory,
+           $routeParams,
+           $timeout){
 
       $scope.title = 'Edit Workouts';
       $scope.preselectedLifts = []
@@ -68,7 +77,7 @@ app.controller('editWorkoutCtrl', [
             name: $scope.workoutToEdit.name
           }
         })
-        $location.path('/workouts');
+        $location.path('FitLyfe/workouts');
       }
 
 

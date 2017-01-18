@@ -17,7 +17,7 @@ app.factory('AuthFactory', [
         console.log('user being logged out')
         userCredentials = null;
         $cookies.remove('workoutCreds');
-        $location.path("/");
+        $location.path("FitLyfe/");
       },
       read () {
         return userCredentials = $cookies.get('workoutCreds');

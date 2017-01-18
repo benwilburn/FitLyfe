@@ -1,5 +1,9 @@
 // angular.module('FitLyfe')
-app.factory('RootFactory', ['$http', 'AddressFactory', function($http, AddressFactory){
+app.factory('RootFactory',
+  ['$http',
+  'AddressFactory',
+  function($http, 
+           AddressFactory){
   let address = AddressFactory.getApiRootAddress();
   console.log('address', address);
   const apiRoot = $http.get(address)

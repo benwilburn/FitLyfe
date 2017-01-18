@@ -1,5 +1,18 @@
 angular.module('FitLyfe')
-.controller('homeCtrl', ['$scope', 'RootFactory', 'AuthFactory', '$location', '$cookies', '$timeout', function($scope, RootFactory, AuthFactory, $location, $cookies, $timeout){
+.controller('homeCtrl',
+  ['$scope',
+  'RootFactory',
+  'AuthFactory',
+  '$location',
+  '$cookies',
+  '$timeout',
+  function($scope,
+           RootFactory,
+           AuthFactory,
+           $location,
+           $cookies,
+           $timeout){
+
   $scope.title = "Home Page";
   $scope.currentUsername = AuthFactory.getUsername();
   console.log('$scope.currentUsername', $scope.currentUsername);
@@ -11,7 +24,6 @@ angular.module('FitLyfe')
   }
 
   let currentUser = AuthFactory.getUserObject();
-  // console.log('currentUserObject', currentUser.user_type + ' is here!');
 
   $scope.workoutExists = false;
 
@@ -46,7 +58,6 @@ angular.module('FitLyfe')
 
   RootFactory.getExerciseTypes().then(types => {
     $scope.generateWorkout = () => {
-      // let lifts_that_match_criteria = [];
       let power_lift_array = [];
       let power_exercise_limit = '';
       let strength_lift_array = [];
@@ -122,127 +133,6 @@ angular.module('FitLyfe')
           }
         }
       }
-      // if($scope.chest){
-      //   for(var i = 0; i < types.length; i++){
-      //     for(var a = 0; a < types[i].associated_lifts.length; a++){
-      //       for(var b = 0; b < types[i].associated_lifts[a].muscles_used.length; b++){
-      //         if(types[i].associated_lifts[a].muscles_used[b].name === "Pectorals"){
-      //           console.log('lift', types[i].associated_lifts);
-      //           if($scope.lifts_that_match_criteria.indexOf(types[i].associated_lifts) === -1){
-      //             $scope.lifts_that_match_criteria.push(types[i].associated_lifts)
-      //             $timeout();
-      //           }
-      //         }
-      //       }
-      //     }
-      //   }
-      // }
-      // if($scope.back){
-      //   for(var i = 0; i < types.length; i++){
-      //     for(var a = 0; a < types[i].associated_lifts.length; a++){
-      //       for(var b = 0; b < types[i].associated_lifts[a].muscles_used.length; b++){
-      //         if(types[i].associated_lifts[a].muscles_used[b].name === "Back"){
-      //           $scope.lifts_that_match_criteria.push(types[i].associated_lifts)
-      //           $timeout();
-      //         }
-      //       }
-      //     }
-      //   }
-      // }
-      // if($scope.shoulders){
-      //   for(var i = 0; i < types.length; i++){
-      //     for(var a = 0; a < types[i].associated_lifts.length; a++){
-      //       for(var b = 0; b < types[i].associated_lifts[a].muscles_used.length; b++){
-      //         if(types[i].associated_lifts[a].muscles_used[b].name === "Shoulders"){
-      //           $scope.lifts_that_match_criteria.push(types[i].associated_lifts)
-      //           $timeout();
-      //         }
-      //       }
-      //     }
-      //   }
-      // }
-      // if($scope.biceps){
-      //   for(var i = 0; i < types.length; i++){
-      //     for(var a = 0; a < types[i].associated_lifts.length; a++){
-      //       for(var b = 0; b < types[i].associated_lifts[a].muscles_used.length; b++){
-      //         if(types[i].associated_lifts[a].muscles_used[b].name === "Biceps"){
-      //           $scope.lifts_that_match_criteria.push(types[i].associated_lifts)
-      //           $timeout();
-      //         }
-      //       }
-      //     }
-      //   }
-      // }
-      // if($scope.triceps){
-      //   for(var i = 0; i < types.length; i++){
-      //     for(var a = 0; a < types[i].associated_lifts.length; a++){
-      //       for(var b = 0; b < types[i].associated_lifts[a].muscles_used.length; b++){
-      //         if(types[i].associated_lifts[a].muscles_used[b].name === "Triceps"){
-      //           $scope.lifts_that_match_criteria.push(types[i].associated_lifts)
-      //           $timeout();
-      //         }
-      //       }
-      //     }
-      //   }
-      // }
-      // if($scope.glutes){
-      //   for(var i = 0; i < types.length; i++){
-      //     for(var a = 0; a < types[i].associated_lifts.length; a++){
-      //       for(var b = 0; b < types[i].associated_lifts[a].muscles_used.length; b++){
-      //         if(types[i].associated_lifts[a].muscles_used[b].name === "Glutes"){
-      //           $scope.lifts_that_match_criteria.push(types[i].associated_lifts)
-      //           $timeout();
-      //         }
-      //       }
-      //     }
-      //   }
-      // }
-      // if($scope.quadriceps){
-      //   for(var i = 0; i < types.length; i++){
-      //     for(var a = 0; a < types[i].associated_lifts.length; a++){
-      //       for(var b = 0; b < types[i].associated_lifts[a].muscles_used.length; b++){
-      //         if(types[i].associated_lifts[a].muscles_used[b].name === "Quadriceps"){
-      //           $scope.lifts_that_match_criteria.push(types[i].associated_lifts)
-      //           $timeout();
-      //         }
-      //       }
-      //     }
-      //   }
-      // }
-      // if($scope.hamstrings){
-      //   for(var i = 0; i < types.length; i++){
-      //     for(var a = 0; a < types[i].associated_lifts.length; a++){
-      //       for(var b = 0; b < types[i].associated_lifts[a].muscles_used.length; b++){
-      //         if(types[i].associated_lifts[a].muscles_used[b].name === "Hamstrings"){
-      //           $scope.lifts_that_match_criteria.push(types[i].associated_lifts)
-      //           $timeout();
-      //         }
-      //       }
-      //     }
-      //   }
-      // }
-      // if($scope.calves){
-      //   for(var i = 0; i < types.length; i++){
-      //     for(var a = 0; a < types[i].associated_lifts.length; a++){
-      //       for(var b = 0; b < types[i].associated_lifts[a].muscles_used.length; b++){
-      //         if(types[i].associated_lifts[a].muscles_used[b].name === "Calves"){
-      //           $scope.lifts_that_match_criteria.push(types[i].associated_lifts)
-      //           $timeout();
-      //         }
-      //       }
-      //     }
-      //   }
-      // }
-      // console.log('lifts_that_match_criteria', lifts_that_match_criteria)
-      // console.log('power_lift_array', power_lift_array)
-      // console.log('power_exercise_limit', power_exercise_limit);
-      // console.log('strength_lift_array', strength_lift_array)
-      // console.log('strength_exercise_limit', strength_exercise_limit);
-      // console.log('endurance_lift_array', endurance_lift_array)
-      // console.log('endurance_exercise_limit', endurance_exercise_limit);
-      // console.log('hypertrophy_lift_array', hypertrophy_lift_array)
-      // console.log('hypertrophy_exercise_limit', hypertrophy_exercise_limit);
-
 
       if($scope.power && $scope.strength && $scope.endurance && $scope.hypertrophy){
         power_exercise_limit = 2;
@@ -250,54 +140,63 @@ angular.module('FitLyfe')
         hypertrophy_exercise_limit = 3;
         endurance_exercise_limit = 4;
       }
+
       if($scope.power && $scope.strength && !$scope.endurance && $scope.hypertrophy){
         power_exercise_limit = 2;
         strength_exercise_limit = 3;
         hypertrophy_exercise_limit = 5;
         endurance_exercise_limit = 0;
       }
+
       if($scope.power && $scope.strength && $scope.endurance && !$scope.hypertrophy){
         power_exercise_limit = 2;
         strength_exercise_limit = 4;
         hypertrophy_exercise_limit = 0;
         endurance_exercise_limit = 5;
       }
+
       if($scope.power && !$scope.strength && $scope.endurance && $scope.hypertrophy){
         power_exercise_limit = 2;
         strength_exercise_limit = 0;
         hypertrophy_exercise_limit = 4;
         endurance_exercise_limit = 5;
       }
+
       if(!$scope.power && $scope.strength && $scope.endurance && $scope.hypertrophy){
         power_exercise_limit = 0;
         strength_exercise_limit = 3;
         hypertrophy_exercise_limit = 4;
         endurance_exercise_limit = 5;
       }
+
       if($scope.power && !$scope.strength && !$scope.endurance && $scope.hypertrophy){
         power_exercise_limit = 3;
         strength_exercise_limit = 0;
         hypertrophy_exercise_limit = 5;
         endurance_exercise_limit = 0;
       }
+
       if($scope.power && $scope.strength && !$scope.endurance && !$scope.hypertrophy){
         power_exercise_limit = 4;
         strength_exercise_limit = 5;
         hypertrophy_exercise_limit = 0;
         endurance_exercise_limit = 0;
       }
+
       if($scope.power && !$scope.strength && $scope.endurance && !$scope.hypertrophy){
         power_exercise_limit = 4;
         strength_exercise_limit = 0;
         hypertrophy_exercise_limit = 0;
         endurance_exercise_limit = 6;
       }
+
       if(!$scope.power && $scope.strength && $scope.endurance && !$scope.hypertrophy){
         power_exercise_limit = 0;
         strength_exercise_limit = 5;
         hypertrophy_exercise_limit = 0;
         endurance_exercise_limit = 6;
       }
+      
       if(!$scope.power && $scope.strength && !$scope.endurance && $scope.hypertrophy){
         power_exercise_limit = 0;
         strength_exercise_limit = 5;
@@ -310,14 +209,7 @@ angular.module('FitLyfe')
       workoutBuilder(hypertrophy_exercise_limit, hypertrophy_lift_array, '8 - 12', '5 - 6', '65% - 75%', '2:30', '48 - 60');
       workoutBuilder(endurance_exercise_limit, endurance_lift_array, '12 - 20', '4 - 6', '55% - 65%', '0:45', '72 - 80');
 
-      // $timeout();
-      console.log('endurance_lift_array', endurance_lift_array);
-      console.log('$scope.workout', $scope.workout);
-
       $scope.workoutExists = true;
     }
   })
-  // $scope.logout = () => {
-  //   AuthFactory.logout();
-  // }
 }])
